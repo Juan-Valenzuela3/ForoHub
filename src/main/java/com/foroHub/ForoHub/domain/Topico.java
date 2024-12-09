@@ -1,12 +1,16 @@
-package com.foroHub.ForoHub;
+package com.foroHub.ForoHub.domain;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Table(name = "topico")
 @Entity(name = "Topico")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Topico {
     @Id
