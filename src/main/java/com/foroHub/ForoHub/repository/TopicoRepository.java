@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface TopicoRepository extends JpaRepository<Topico, Long> {
-    Optional<Topico> findByTitulo(String titulo);
+    boolean existsByTituloAndMensaje(String titulo, String mensaje);
 }

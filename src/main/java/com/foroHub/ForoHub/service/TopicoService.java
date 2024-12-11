@@ -6,13 +6,17 @@ import com.foroHub.ForoHub.dto.TopicoDTO;
 import com.foroHub.ForoHub.repository.TopicoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class TopicoService {
     private final TopicoRepository topicoRepository;
 
@@ -36,6 +40,14 @@ public class TopicoService {
     }
 
     public TopicoDTO crear(TopicoCreateDTO topicoCreate) {
+        // Verifier si ya existe un tópico con el mismo título y mensaje
+        if (topicoRepository.existsByTituloAndMensaje(topicoCreate.titulo(), topicoCreate.mensaje())) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Ya existe un tópico con este título y mensaje"
+            );
+        }
+
         Topico topico = new Topico();
         topico.setTitulo(topicoCreate.titulo());
         topico.setMensaje(topicoCreate.mensaje());
