@@ -10,5 +10,4 @@ public record TopicoDTO(
         String status,
         String autor,
         String curso
-) {
-}
+) {}
