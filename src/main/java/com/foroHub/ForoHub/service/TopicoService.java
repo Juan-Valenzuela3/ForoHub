@@ -39,6 +39,20 @@ public class TopicoService {
                 .collect(Collectors.toList());
     }
 
+    public TopicoDTO obtenerPorId(Long id) {
+        Topico topico = topicoRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Tópico no encontrado"));
+        return new TopicoDTO(
+                topico.getId(),
+                topico.getTitulo(),
+                topico.getMensaje(),
+                topico.getFechaCreacion(),
+                topico.getStatus(),
+                topico.getAutor(),
+                topico.getCurso()
+        );
+    }
+
     public TopicoDTO crear(TopicoCreateDTO topicoCreate) {
         // Verifier si ya existe un tópico con el mismo título y mensaje
         if (topicoRepository.existsByTituloAndMensaje(topicoCreate.titulo(), topicoCreate.mensaje())) {
