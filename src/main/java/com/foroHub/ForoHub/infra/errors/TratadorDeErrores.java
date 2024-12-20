@@ -31,12 +31,4 @@ public class TratadorDeErrores {
             this(error.getField(), error.getDefaultMessage());
         }
     }
-
-    @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<Map<String, String>> manejarEntidadNoEncontrada(EntityNotFoundException ex) {
-        Map<String, String> respuesta = new HashMap<>();
-        respuesta.put("error", "Recurso no encontrado");
-        respuesta.put("detalles", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(respuesta);
-    }
 }
