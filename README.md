@@ -35,7 +35,7 @@ ForoHub es una plataforma diseñada para la gestión de foros en línea, permiti
 ## Instalación y Configuración
 
 1. Clona el repositorio:
-    - git clone https://github.com/tu-usuario/ForoHub.git
+    - git clone https://github.com/Juan-Valenzuela3/ForoHub.git
 2. Configura las variables de entorno necesarias:
 
 | Variable de entorno | Descripción |
