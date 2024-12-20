@@ -4,18 +4,21 @@ ForoHub es una plataforma diseñada para la gestión de foros en línea, permiti
 
 ## Características
 
-- CRUD completo para la gestión de tópicos en el foro.
-- Implementación de seguridad mediante JWT para la autenticación.
+- Gestión de Tópicos: Realiza operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre los tópicos de tu foro.
+- Seguridad Robusta: Protege tus datos con autenticación basada en tokens JWT y validación rigurosa de datos en cada solicitud.
+- Escalabilidad: Aprovecha la potencia de Spring Boot y MySQL para construir una plataforma escalable y adaptable.
+- Facilidad de Uso: Disfruta de una interfaz intuitiva y una documentación clara para una rápida puesta en marcha.
+- Personalizable: Adapta la plataforma a tus necesidades gracias a su arquitectura modular y extensible.
 - Validación de datos en los endpoints REST.
 - Migraciones automáticas de la base de datos usando Flyway.
 - Manejo centralizado de errores mediante @ControllerAdvice.
-- Documentación clara y estructura modular del código.
+
 
 ## Tecnologías Utilizadas
 
-- Lenguaje de programación: Java
-- Framework: Spring Boot
-- Base de datos: MySQL
+- Backend: Java, Spring Boot
+- Base de Datos: MySQL
+- Herramientas: Flyway, JWT, Maven
 
 ## Librerías y herramientas principales:
 - spring-boot-starter-data-jpa para persistencia de datos.
