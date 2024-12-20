@@ -29,29 +29,34 @@ public class TokenService {
                     .withExpiresAt(generarFechaExpiracion())
                     .sign(algorithm);
         } catch (JWTCreationException exception) {
-            throw new RuntimeException();
+            throw new RuntimeException("Error al generar el token", exception);
         }
     }
 
     public String getSubject(String token) {
-        DecodedJWT verifier = null;
+        if (token == null || token.isBlank()) {
+            throw new IllegalArgumentException("El token proporcionado es nulo o está vacío");
+        }
+
         try {
             Algorithm algorithm = Algorithm.HMAC256(apiSecret);
-            verifier = JWT.require(algorithm)
+            DecodedJWT decodedJWT = JWT.require(algorithm)
                     .withIssuer("ForoHub")
                     .build()
                     .verify(token);
-            verifier.getSubject();
+
+            String subject = decodedJWT.getSubject();
+            if (subject == null || subject.isBlank()) {
+                throw new RuntimeException("El token no contiene un 'subject' válido");
+            }
+            return subject;
         } catch (JWTVerificationException exception) {
-            System.out.println(exception.toString());
+            throw new RuntimeException("Error al verificar el token: " + exception.getMessage(), exception);
         }
-        if (verifier.getSubject() == null) {
-            throw new RuntimeException("Verifier invalido");
-        }
-        return verifier.getSubject();
     }
 
     private Instant generarFechaExpiracion() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-05:00"));
     }
 }
+
